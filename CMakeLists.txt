@@ -4,7 +4,7 @@ project(sem_2_laba_5 C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(sem_2_laba_5 main.c
-        Not_in_second_stack.h
+        In_second_stack.h
         Union_stack.h
         Text_file_processing.h
         Stack_operations.h

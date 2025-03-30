@@ -114,7 +114,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Not_in_second_stack.h",
+			"path" : "In_second_stack.h",
 			"sourceGroupIndex" : 1
 		},
 		{

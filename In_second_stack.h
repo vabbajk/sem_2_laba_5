@@ -1,11 +1,11 @@
-#ifndef NOT_IN_SECOND_STACK_H
-#define NOT_IN_SECOND_STACK_H
+#ifndef In_second_stack_H
+#define In_second_stack_H
 
 #include "Stack_operations.h"
 #include "Header.h"
 #include <windows.h>
 
-int not_int_second_stack()
+int in_second_stack()
 {
     system("cls");
     SetConsoleOutputCP(1251);

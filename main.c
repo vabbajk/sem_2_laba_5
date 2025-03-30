@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "Header.h"
-#include "Not_in_second_stack.h"
+#include "In_second_stack.h"
 #include "Union_stack.h"
 #include "Text_file_processing.h"
 
@@ -19,7 +19,7 @@ int main(void) {
         switch (c) {
             case '1':
 
-                not_int_second_stack();
+                in_second_stack();
                 break;
 
             case '2':
