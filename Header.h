@@ -3,11 +3,11 @@
 
 
 #include <stdio.h>
-#include <locale.h>
 #include <stdlib.h>
 #include <conio.h>
 
 #include <limits.h>
+#include <math.h>
 
 int check_int_1(const char *input, int min, int max) {
     if (input == NULL || *input == '\0') {
@@ -51,9 +51,9 @@ int check_int_1(const char *input, int min, int max) {
     return 1;
 }
 
-long long int new_input_metod(int min, int max) {
+int new_input_metod(int min, int max) {
     int size = 0;
-    long long int res = 0;
+    int res = 0;
     int has_num = 0;
 
     char* line = (char*)malloc(1);
@@ -150,7 +150,6 @@ long long int new_input_metod(int min, int max) {
     free(line);
     return res;
 }
-
 
 char choce_task_n_to_m(char n, char m) {
     char c = 'l';

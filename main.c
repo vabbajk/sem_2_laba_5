@@ -29,7 +29,7 @@ int main(void) {
 
             case '3':
 
-                processFile("input.txt", "output.txt");
+                //process_evaluation("input.txt", "output.txt");
                 printf("\n\nРезультат находится в файле =output.txt=\n");
                 break;
 

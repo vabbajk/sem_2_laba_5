@@ -11,21 +11,21 @@ int in_second_stack()
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
 
-    Stack stack1, stack2;
-    init(&stack1);
-    init(&stack2);
+    struct Node *stack_1 = NULL;
+    struct Node *stack_2 = NULL;
 
     int size1, size2;
 
     printf("\n¬ведите размер первого стека: ");
-    size1 = new_input_metod(INT_MIN, INT_MAX);
-    inputStack(&stack1, size1);
+    size1 = new_input_metod(0, INT_MAX);
+    inputStack(&stack_1, size1);
+
 
     printf("\n¬ведите размер второго стека: ");
-    size2 = new_input_metod(INT_MIN, INT_MAX);
-    inputStack(&stack2, size2);
+    size2 = new_input_metod(0, INT_MAX);
+    inputStack(&stack_2, size2);
 
-    printUnique(&stack1, &stack2);
+    printNotInSecondStack(&stack_1, &stack_2);
 
     return 0;
 }
