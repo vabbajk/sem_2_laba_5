@@ -10,6 +10,11 @@ struct Node {
     struct Node* next;
 };
 
+struct Int_Node {
+    double data;
+    struct Int_Node* next;
+};
+
 struct Char_Node {
     char data;
     struct Char_Node* next;
@@ -37,6 +42,16 @@ struct Char_Node* createCharNode(char data) {
     return newNode;
 }
 
+struct Int_Node* createIntNode(int data) {
+    struct Int_Node* newNode = (struct Int_Node*)malloc(sizeof(struct Int_Node));
+    if (!newNode) {
+        printf("Memory allocation error from createNode\n");
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
 
 void push(struct Node** top, double data) {
     struct Node* newNode = createNode(data);
@@ -46,6 +61,12 @@ void push(struct Node** top, double data) {
 
 void pushChar(struct Char_Node** top, char data) {
     struct Char_Node* newNode = createCharNode(data);
+    newNode->next = *top;
+    *top = newNode;
+}
+
+void pushDouble(struct Int_Node** top, int data) {
+    struct Int_Node* newNode = createIntNode(data);
     newNode->next = *top;
     *top = newNode;
 }
@@ -62,13 +83,25 @@ double pop(struct Node** top) {
     return popped;
 }
 
-double popChar(struct Char_Node** top) {
+char popChar(struct Char_Node** top) {
     if (*top == NULL) {
         printf("Stack is empty!\n");
         return -1;
     }
     struct Char_Node* temp = *top;
     char popped = temp->data;
+    *top = (*top)->next;
+    free(temp);
+    return popped;
+}
+
+int popInt(struct Int_Node** top) {
+    if (*top == NULL) {
+        printf("Stack is empty!\n");
+        return -1;
+    }
+    struct Int_Node* temp = *top;
+    int popped = temp->data;
     *top = (*top)->next;
     free(temp);
     return popped;
@@ -85,6 +118,11 @@ int isEmptyChar(struct Char_Node* top) {
     else return 0;
 }
 
+int isEmptyInt(struct Int_Node* top) {
+    if (!top) return 1;
+    else return 0;
+}
+
 double peek(struct Node* top) {
     if (!top) return NAN;
     else return top->data;
@@ -95,16 +133,18 @@ char peekChar(struct Char_Node* top) {
     else return top->data;
 }
 
-int inputStack(struct Node** top, int size) {
-    double temp = 0;
-    for (int i = 0; i < size; i++) {
-        temp = new_input_metod(INT_MIN + 1, INT_MAX);
-        if (temp == INT_MIN) {
-            return 0;
-        }
-        push(top, temp);
-    }
-    return 1;
+double peek(struct Node* top) {
+    if (!top) return NAN;
+    else return top->data;
+}
+
+int inputStack(struct Node ** top, int size) {
+    int current_value = 0, iterator = 0;
+
+    do {
+        current_value = new_input_metod(0, INT_MAX);
+        if (current_value!=INT_MIN){push(top, )}
+    }while (current_value != INT_MIN && iterator < size);
 }
 
 int isInStack(struct Node *s, double value) {
@@ -117,11 +157,11 @@ int isInStack(struct Node *s, double value) {
 
 void printNotInSecondStack(struct Node **s1, struct Node **s2) {
     printf("First stack elements, found in second stack: ");
-    while (*s1 != NULL) { // Проверка на текущий узел, а не указатель на указатель
+    while (*s1 != NULL) {
         if (!isInStack(*s2, (*s1)->data)) {
-            printf("%.0lf ", (*s1)->data); // Пример вывода с типом double
+            printf("%.0lf ", (*s1)->data);
         }
-        *s1 = (*s1)->next; // Переход к следующему узлу
+        *s1 = (*s1)->next;
     }
     printf("\n");
 }
