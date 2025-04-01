@@ -11,7 +11,7 @@ struct Node {
 };
 
 struct Int_Node {
-    double data;
+    int data;
     struct Int_Node* next;
 };
 
@@ -65,7 +65,7 @@ void pushChar(struct Char_Node** top, char data) {
     *top = newNode;
 }
 
-void pushDouble(struct Int_Node** top, int data) {
+void pushInt(struct Int_Node** top, int data) {
     struct Int_Node* newNode = createIntNode(data);
     newNode->next = *top;
     *top = newNode;
@@ -133,67 +133,84 @@ char peekChar(struct Char_Node* top) {
     else return top->data;
 }
 
-double peek(struct Node* top) {
+int peekInt(struct Int_Node* top) {
     if (!top) return NAN;
     else return top->data;
 }
 
-int inputStack(struct Node ** top, int size) {
-    int current_value = 0, iterator = 0;
+int inputStack(struct Int_Node ** top, int size) {
+    int current_value = INT_MIN, iterator = 0;
 
     do {
-        current_value = new_input_metod(0, INT_MAX);
-        if (current_value!=INT_MIN){push(top, )}
+
+        current_value = new_input_metod(INT_MIN + 1, INT_MAX);
+        if (current_value!=INT_MIN){pushInt(top, current_value);}
+        iterator++;
+
     }while (current_value != INT_MIN && iterator < size);
+    return 0;
 }
 
 int isInStack(struct Node *s, double value) {
-    while (s->next != NULL) {
+    while (s!= NULL) {
         if (s->data == value) return 1;
         s = s->next;
     }
     return 0;
 }
 
-void printNotInSecondStack(struct Node **s1, struct Node **s2) {
-    printf("First stack elements, found in second stack: ");
-    while (*s1 != NULL) {
-        if (!isInStack(*s2, (*s1)->data)) {
-            printf("%.0lf ", (*s1)->data);
+int isInStackInt(struct Int_Node *s, int value) {
+    while (s != NULL) {
+        if (s->data == value) return 1;
+        s = s->next;
+    }
+    return 0;
+}
+
+void printNotInSecondStack(struct Int_Node *s1, struct Int_Node *s2) {
+    printf("First stack elements, not found in second stack: ");
+    struct Int_Node *temp = s1;
+    while (temp != NULL) {
+        if (!isInStackInt(s2, temp->data)) {
+            printf("%d ", temp->data);
         }
-        *s1 = (*s1)->next;
+        temp = temp->next;
     }
     printf("\n");
 }
 
-void inputIncreasingStack(struct Node ** top, int size) {
-    int iter = 0, min_value = INT_MIN;
-    while (iter < size && min_value != NAN) {
-        min_value = new_input_metod(min_value, INT_MAX);
-        if (min_value != NAN) {
-            push(top, min_value);
-        }
-    }
+int inputIncreasingStack(struct Int_Node ** top, int size) {
+    int current_value = INT_MIN, iterator = 0;
+
+    do {
+
+        current_value = new_input_metod(current_value + 1, INT_MAX);
+        if (current_value!=INT_MIN){pushInt(top, current_value);}
+        iterator++;
+
+    }while (current_value != INT_MIN && iterator < size);
+    return 0;
 }
 
-void mergeStacks(struct Node *s1, struct Node  *s2, struct Node **s3) {
+void mergeStacks(struct Int_Node *s1, struct Int_Node *s2, struct Int_Node **s3) {
+    struct Int_Node *tempStack = NULL;
 
-    struct Node * tempStack;
 
-    while (isEmpty(s1) || isEmpty(s2)) {
-        if (isEmpty(s1)) {
-            push(&tempStack, pop(&s2));
-        } else if (isEmpty(s2)) {
-            push(&tempStack, pop(&s1));
-        } else if (peek(s1) > peek(s2)) {
-            push(&tempStack, pop(&s1));
+    while (!isEmptyInt(s1) || !isEmptyInt(s2)) {
+        if (isEmptyInt(s1)) {
+            pushInt(&tempStack, popInt(&s2));
+        } else if (isEmptyInt(s2)) {
+            pushInt(&tempStack, popInt(&s1));
+        } else if (peekInt(s1) > peekInt(s2)) {
+            pushInt(&tempStack, popInt(&s1));
         } else {
-            push(&tempStack, pop(&s2));
+            pushInt(&tempStack, popInt(&s2));
         }
     }
 
-    while (!isEmpty(tempStack)) {
-        push(s3, pop(&tempStack));
+
+    while (!isEmptyInt(tempStack)) {
+        pushInt(s3, popInt(&tempStack));
     }
 }
 
@@ -205,4 +222,10 @@ void printStack(struct Node *top) {
     printf("%lf ", top->data);
 }
 
+void printStackInt(struct Int_Node *top) {
+    while (top != NULL) {
+        printf("%d \n", top->data);
+        top = top->next;
+    }
+}
 #endif

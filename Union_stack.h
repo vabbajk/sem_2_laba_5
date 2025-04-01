@@ -11,23 +11,29 @@ int union_stack() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
 
-    struct Node* stack_1;
-    struct Node* stack_2;
-    struct Node* stack_3;
+    struct Int_Node *stack_1 = NULL;
+    struct Int_Node *stack_2 = NULL;
+    struct Int_Node *stack_3 = NULL;
 
     int size1, size2;
     printf("Введите размер первого стека: ");
     size1 = new_input_metod(0, INT_MAX);
-    inputIncreasingStack(&stack_1, size1);
+    do {
+        printf("\nВводите стек  (нажмиете esc для завершения) :\n");
+        inputIncreasingStack(&stack_1, size1);
+    }while (isEmptyInt(stack_1));
 
-    printf("Введите размер второго стека: ");
+    printf("\nВведите размер второго стека: ");
     size2 = new_input_metod(0, INT_MAX);
-    inputIncreasingStack(&stack_1, size2);
+    do {
+        printf("\nВводите стек  (нажмиете esc для завершения) :\n");
+        inputIncreasingStack(&stack_2, size2);
+    }while (isEmptyInt(stack_1));
 
     mergeStacks(stack_1, stack_2, &stack_3);
 
-    printf("Вот объединенный стек : ");
-    printStack(stack_3);
+    printf("Вот объединенный стек : \n");
+    printStackInt(stack_3);
 
     return 0;
 }
