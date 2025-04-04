@@ -15,17 +15,19 @@ int in_second_stack()
     struct Int_Node *stack_2 = NULL;
 
     int size1, size2;
-
-    printf("\nВведите размер первого стека: ");
-    size1 = new_input_metod(0, INT_MAX);
-
+    do {
+        printf("\nВведите размер первого стека: ");
+        size1 = new_input_metod(0, INT_MAX);
+    } while (size1 <= 0);
     do {
         printf("\nВводите стек  (нажмиете esc для завершения) :\n");
         inputStack(&stack_1, size1);
     }while (isEmptyInt(stack_1));
 
-    printf("\nВведите размер второго стека: ");
-    size2 = new_input_metod(0, INT_MAX);
+    do {
+        printf("\nВведите размер второго стека: ");
+        size2 = new_input_metod(0, INT_MAX);
+    } while (size2 <= 0);
     do{
     printf("\nВводите стек  (нажмиете esc для завершения) :\n");
     inputStack(&stack_2, size2);

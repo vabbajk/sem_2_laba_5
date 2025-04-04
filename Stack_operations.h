@@ -184,7 +184,7 @@ int inputIncreasingStack(struct Int_Node ** top, int size) {
 
     do {
 
-        current_value = new_input_metod(current_value + 1, INT_MAX);
+        current_value = new_input_metod(current_value, INT_MAX);
         if (current_value!=INT_MIN){pushInt(top, current_value);}
         iterator++;
 
@@ -194,7 +194,6 @@ int inputIncreasingStack(struct Int_Node ** top, int size) {
 
 void mergeStacks(struct Int_Node *s1, struct Int_Node *s2, struct Int_Node **s3) {
     struct Int_Node *tempStack = NULL;
-
 
     while (!isEmptyInt(s1) || !isEmptyInt(s2)) {
         if (isEmptyInt(s1)) {
@@ -207,7 +206,6 @@ void mergeStacks(struct Int_Node *s1, struct Int_Node *s2, struct Int_Node **s3)
             pushInt(&tempStack, popInt(&s2));
         }
     }
-
 
     while (!isEmptyInt(tempStack)) {
         pushInt(s3, popInt(&tempStack));

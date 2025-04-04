@@ -1,1 +1,12 @@
-0.125000
+Result: 1 + 2 = 3.000000
+Result: 3 + (1 - 7) = -3.000000
+Result: 2 * 4 = 8.000000
+Result: 2 * -4 = -4.000000
+Result: -5 + 17 = 12.000000
+Result: (1 + 2) * (3 - 4) + ((7-4)*2 - 1) = 2.000000
+Error: Unmatched parentheses in expression: ) 4 + 5 (
+Error: Unmatched parentheses in expression: ) 4 + 5
+Error: Unmatched parentheses in expression: (12 - 7))
+Error: Unmatched parentheses in expression: 7 - 3)
+Error: Invalid postfix expression: 
+Result: 3 + 5 * 7 = 38.000000
